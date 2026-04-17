@@ -9,4 +9,4 @@ def load_input(filename: str) -> list[str]:
     if not file_path.exists():
         raise FileNotFoundError(f"Input file not found: {file_path}")
 
-    return file_path.read_text().splitlines()
+    return file_path.read_text(encoding="utf-8").splitlines()
