@@ -1,4 +1,4 @@
-from src.base_day import BaseDay
+from .base_day import BaseDay
 
 
 class Day01(BaseDay):
@@ -8,5 +8,7 @@ class Day01(BaseDay):
     def part1(self) -> int:
         return len(self.data)
 
-    def part2(self) -> int:
-        return 0
+
+if __name__ == "__main__":
+    data = Day01.load_input_file("day01.txt")
+    print(Day01(data).part1())
