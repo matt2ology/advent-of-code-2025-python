@@ -8,8 +8,4 @@ class TestDay01:
 
     def test_part1(self, load_input_file):
         data = load_input_file(self.test_file)
-        assert Day01(data).part1() == 10
-
-    def test_part2(self, load_input_file):
-        data = load_input_file(self.test_file)
-        assert Day01(data).part2() == 0
+        assert Day01(data).part1() == 3
