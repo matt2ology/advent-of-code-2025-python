@@ -3,7 +3,7 @@ from .io import load_input_file
 
 
 def run_day_01():
-    data = load_input_file("day01.txt")
+    data = load_input_file("day01_input.txt")
 
     solver = Day01(data)
 
