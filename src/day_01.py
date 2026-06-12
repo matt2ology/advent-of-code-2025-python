@@ -14,5 +14,24 @@ class Day01(BaseDay):
 
 
 if __name__ == "__main__":
-    data = load_input_file("day01.txt")
-    print(Day01(data).part1())
+    _data: list[str] = load_input_file("../input/day01_input_sample.txt")
+    _zero_counter: int = 0
+    _position: int = 0
+    for combination in _data:
+        print("Combination:", combination)
+        _combination_direction: str = combination[0]
+        _movement: int = int(combination[1:])
+        print("\tPrevious position:", _position)
+        print("\tRotation:", _combination_direction, "Movement:", _movement)
+        if _combination_direction.lower() == "l":
+            _position = (_position + (-(_movement))) % 10
+            print("\tMove LEFT by:", _position, "positions")
+        if _combination_direction.lower() == "r":
+            _position = (_position + (_movement)) % 10
+            print("\tMove RIGHT by:", _position, "positions")
+        if _position == 0:
+            _zero_counter += 1
+            print("\t+ Counter increased:", _zero_counter)
+        print()
+
+    print("COUNTER:", _zero_counter)
