@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# Project root directory (resolved from this file's location, two levels up)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
