@@ -6,13 +6,28 @@ class Day01(BaseDay):
     def __init__(self, data: list[str], starting_position: int = 50):
         super().__init__(data)
         self.starting_position = int(starting_position)
+        self.divisor: int = 100
 
     def part1(self) -> int:
+        """`count_zero_landings`
+        Simulate a sequence of dial rotations and count how many times the dial
+        points to position **0**.
+
+        Starting from `self.starting_position`, each movement instruction in
+        `self.data` is processed to update the dial position. After every
+        movement, the counter is incremented whenever the resulting position
+        is **0**.
+
+        Returns:
+            int: The total number of times the dial points to position **0**
+            during the simulation.
+        """
         zero_counter: int = 0
         position: int = self.starting_position
-        for combinations in self.data:
-            combination_direction: str = combinations[0]
-            movement: int = int(combinations[1:])
+        self.logging.info(f"The dial starts by pointing at {position}")
+        for combination in self.data:
+            combination_direction: str = combination[0]
+            movement: int = int(combination[1:])
             position = self._combination_movement_left(
                 position,
                 combination_direction,
@@ -23,23 +38,30 @@ class Day01(BaseDay):
                 combination_direction,
                 movement
             )
-            zero_counter = self.incrament_zero_counter(position, zero_counter)
+            zero_counter = self._incrament_zero_counter(position, zero_counter)
+
+            self.logging.info(
+                f"The dial is rotated {combination} to point at {position}")
 
         return zero_counter
 
-    def incrament_zero_counter(self, position: int, zero_counter: int) -> int:
+    def _incrament_zero_counter(self, position: int, zero_counter: int) -> int:
         if position == 0:
             zero_counter += 1
         return zero_counter
 
-    def _combination_movement_left(self, position, combination_direction, movement):
+    def _combination_movement_left(
+            self, position, combination_direction, movement
+    ) -> int:
         if combination_direction.lower() == "l":
-            position = ((position + (-(movement))) % 10)
+            position = ((position + (-(movement))) % self.divisor)
         return position
 
-    def _combination_movement_right(self, position, combination_direction, movement):
+    def _combination_movement_right(
+            self, position, combination_direction, movement
+    ) -> int:
         if combination_direction.lower() == "r":
-            position = ((position + (movement)) % 10)
+            position = ((position + (movement)) % self.divisor)
         return position
 
     def part2(self) -> int:
@@ -47,29 +69,5 @@ class Day01(BaseDay):
 
 
 if __name__ == "__main__":
-    _data: list[str] = load_input_file("../input/day01_input_sample_3_zero.txt")
-    # _data: list[str] = load_input_file("../input/day01_input.txt")
-    _zero_counter: int = 0
-    _position: int = 50
-    print("The dial starts by pointing", _position)
-    for combination in _data:
-        _combination_direction: str = combination[0]
-        _movement: int = int(combination[1:])
-        if _combination_direction.lower() == "l":
-            _position = (_position - ((_movement))) % 10
-            print(
-                "\tThe dial is rotated", combination,
-                "to point at", (_position + (_movement))
-            )
-        if _combination_direction.lower() == "r":
-            _position = (_position + (_movement)) % 10
-            print(
-                "\tThe dial is rotated", combination,
-                "to point at", (_position + (_movement))
-            )
-        if _position == 0:
-            _zero_counter += 1
-            print("\t+ Counter increased:", _zero_counter)
-        print()
-
-    print("COUNTER:", _zero_counter)
+    _data: list[str] = load_input_file("../input/day01_input.txt")
+    print(Day01(_data).part1())
