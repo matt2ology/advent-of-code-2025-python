@@ -210,7 +210,7 @@ Circular array simulation / state tracking
 
 ```python
 if __name__ == "__main__":
-    _data: list[str] = load_input_file("../input/day01_input_sample.txt")
+    _data: list[str] = load_input_file("../input/day01_input_sample_3_zero.txt")
     _zero_counter: int = 0
     _position: int = 0
     for combination in _data:
