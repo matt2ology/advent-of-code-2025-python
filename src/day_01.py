@@ -22,9 +22,13 @@ class Day01(BaseDay):
                 combination_direction,
                 movement
             )
-            if position == 0:
-                zero_counter += 1
+            zero_counter = self.incrament_zero_counter(position, zero_counter)
 
+        return zero_counter
+
+    def incrament_zero_counter(self, position: int, zero_counter: int) -> int:
+        if position == 0:
+            zero_counter += 1
         return zero_counter
 
     def _combination_movement_left(self, position, combination_direction, movement):
