@@ -218,3 +218,4 @@ __marimo__/
 /dataSources.local.xml
 .vscode/settings.json
 .DS_Store
+.idea/workspace.xml
