@@ -3,15 +3,16 @@ from src.io import load_input_file
 
 
 class Day01(BaseDay):
-    def __init__(self, data: list[str]):
+    def __init__(self, data: list[str], starting_position: int = 50):
         super().__init__(data)
+        self.starting_position = int(starting_position)
 
     def part1(self) -> int:
         zero_counter: int = 0
-        position: int = 50
-        for combination in self.data:
-            combination_direction: str = combination[0]
-            movement: int = int(combination[1:])
+        position: int = self.starting_position
+        for combinations in self.data:
+            combination_direction: str = combinations[0]
+            movement: int = int(combinations[1:])
             position = self._combination_movement_left(
                 position,
                 combination_direction,
@@ -46,7 +47,7 @@ class Day01(BaseDay):
 
 
 if __name__ == "__main__":
-    _data: list[str] = load_input_file("../input/day01_input_sample.txt")
+    _data: list[str] = load_input_file("../input/day01_input_sample_3_zero.txt")
     # _data: list[str] = load_input_file("../input/day01_input.txt")
     _zero_counter: int = 0
     _position: int = 50
