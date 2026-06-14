@@ -38,14 +38,14 @@ class Day01(BaseDay):
                 combination_direction,
                 movement
             )
-            zero_counter = self._incrament_zero_counter(position, zero_counter)
+            zero_counter = self._increment_zero_counter(position, zero_counter)
 
             self.logging.info(
                 f"The dial is rotated {combination} to point at {position}")
 
         return zero_counter
 
-    def _incrament_zero_counter(self, position: int, zero_counter: int) -> int:
+    def _increment_zero_counter(self, position: int, zero_counter: int) -> int:
         if position == 0:
             zero_counter += 1
         return zero_counter
