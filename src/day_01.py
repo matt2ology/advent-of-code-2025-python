@@ -26,7 +26,7 @@ class Day01(BaseDay):
         position: int = self.starting_position
         self.logging.info(f"The dial starts by pointing at {position}")
         for combination in self.data:
-            combination_direction: str = combination[0]
+            combination_direction: str = combination[0].lower()
             movement: int = int(combination[1:])
             position = self._combination_movement_left(
                 position,
@@ -53,14 +53,14 @@ class Day01(BaseDay):
     def _combination_movement_left(
             self, position, combination_direction, movement
     ) -> int:
-        if combination_direction.lower() == "l":
+        if combination_direction == "l":
             position = ((position + (-(movement))) % self.divisor)
         return position
 
     def _combination_movement_right(
             self, position, combination_direction, movement
     ) -> int:
-        if combination_direction.lower() == "r":
+        if combination_direction == "r":
             position = ((position + (movement)) % self.divisor)
         return position
 
