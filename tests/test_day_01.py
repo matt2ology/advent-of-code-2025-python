@@ -4,7 +4,7 @@ from src.day_01 import Day01
 class TestDay01:
 
     def setup_method(self):
-        self.day01_input_sample_3_zero = "day01_input_sample_3_zero.txt"
+        self.day01_input_sample01 = "day01_input_sample01.txt"
         self.day01_input_sample_2_zero_start_11 = "day01_input_sample_2_zero_start_11.txt"
         self.day01_input_sample_1_zero_start_5 = "day01_input_sample_1_zero_start_5.txt"
 
@@ -25,7 +25,7 @@ class TestDay01:
         Because the dial points at 0 a total of three times
         during this process, the password in this example is 3.
         """
-        data = load_input_file_fixture(self.day01_input_sample_3_zero)
+        data = load_input_file_fixture(self.day01_input_sample01)
         assert Day01(data).part1() == 3
 
     def test_part1_sample_3_zero_start_11(self, load_input_file_fixture):
